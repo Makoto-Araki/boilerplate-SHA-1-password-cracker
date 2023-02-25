@@ -19,9 +19,11 @@ def crack_sha1_hash(hash, use_salts = False):
                     for data2 in datalist2:
                         tmp1 = data1.rstrip('\n').encode("utf-8")
                         tmp2 = data2.rstrip('\n').encode("utf-8")
-                        tmp3 = tmp1 + tmp2
-                        tmp4 = hashlib.sha1(tmp3).hexdigest()
-                        if (tmp4 == hash):
+                        tmp3 = tmp2 + tmp1
+                        tmp4 = tmp1 + tmp2
+                        tmp5 = hashlib.sha1(tmp3).hexdigest()
+                        tmp6 = hashlib.sha1(tmp4).hexdigest()
+                        if (tmp5 == hash or tmp6 == hash):
                             result = data1.rstrip('\n')
                             break
                 return result
